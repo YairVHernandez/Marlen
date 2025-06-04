@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>💌</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+    <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      font-family: 'Courier';
+      background-color: black;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .page {
+      width: 100vw;
+      height: 100vh;
+      position: absolute;
+      top: 0;
+      left: 100vw;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 2rem;
+      transition: left 1s ease-in-out;
+    }
+
+    .page.active {
+      left: 0;
+    }
+
+    h1 {
+      font-size: 4rem;
+      color: #7ec8e3; /* azul claro */
+      text-shadow: 2px 2px 10px #00ffff;
+    }
+
+    p {
+      font-size: 1.8rem;
+      color: #e0f7ff;
+      max-width: 600px;
+      margin-top: 1rem;
+      text-shadow: 1px 1px 2px #004466;
+    }
+
+    button {
+      margin-top: 2rem;
+      padding: 1rem 2rem;
+      font-size: 1.2rem;
+      background: linear-gradient(145deg, #0f3057, #00587a);
+      color: #e0f7ff;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(0, 255, 255, 0.2);
+      transition: background 0.4s, transform 0.2s;
+    }
+
+    button:hover {
+      background: linear-gradient(145deg, #00587a, #00aaff);
+      transform: scale(1.05);
+      box-shadow: 0 0 20px #00ffff;
+    }
+
+    .flower {
+      position: absolute;
+      top: -50px;
+      font-size: 24px;
+      animation: fall linear infinite;
+      pointer-events: none;
+    }
+
+    .flower::before {
+      content: "🌷";
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(-10vh);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(100vh);
+        opacity: 0;
+      }
+    }
+
+    .star {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: white;
+      border-radius: 50%;
+      animation: twinkle 2s infinite;
+    }
+
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 1; }
+    }
+
+    audio {
+      display: none;
+    }
+
+  </style>
+
+</head>
+<body>
+
+  <!-- Páginas -->
+  <div class="page active" id="page1">
+    <h1>Feliz Cumpleaños</h1>
+     <p>Deseo que tengas un día brillante de luz y alegría, buenas sorpresas y sonrisas espléndidas. ¡Muchas felicidades hoy y siempre, y que en tu vida abunden el amor, la amistad, la salud, la paz y el éxito!❤️</p>
+    <button onclick="nextPage()">🥳</button>
+  </div>
+
+ <div class="page" id="page2">
+    <p>Hoy es tu gran día. Por eso, pido que no te falten razones para sentirte feliz, en paz y rodeada de las personas que amas. Celebra esta fecha con mucha alegría en el corazón. ¡Feliz cumpleaños, querida amiga!🎂</p>
+    <button onclick="nextPage()">✨</button>
+  </div>
+
+  <div class="page" id="page3">
+    <p>Te mereces todo lo lindo de este mundo y estando cerca o no, siempre tratare de que asi sea.</p>
+    <p>Eres muy inteligente y se que puedes lograr mas de lo que crees, aun en los momentos malos que nunca se apague ese brillo que te hace ser tan unica y especial.</p>
+    <button onclick="nextPage()">🥰</button>
+  </div>
+
+  <div class="page" id="page4">
+    <p>Eres una bella amiga por dentro y por fuera, un ser humano increíble y, por eso, mereces todo lo mejor en este día. Acuérdate de que estaré a tu lado hoy, mañana y siempre.😊🥳🎂</p>
+    <button onclick="window.location.href='flower.html'">💐</button>
+
+  </div>
+
+  <!-- JavaScript para flores, estrellas y navegación -->
+  <script>
+    const totalFlowers = 20;
+    for (let i = 0; i < totalFlowers; i++) {
+      const flower = document.createElement('div');
+      flower.className = 'flower';
+      flower.style.left = Math.random() * 100 + 'vw';
+      flower.style.animationDuration = (5 + Math.random() * 5) + 's';
+      flower.style.opacity = Math.random();
+      document.body.appendChild(flower);
+    }
+
+    const totalStars = 100;
+    for (let i = 0; i < totalStars; i++) {
+      const star = document.createElement('div');
+      star.className = 'star';
+      star.style.top = Math.random() * 100 + 'vh';
+      star.style.left = Math.random() * 100 + 'vw';
+      star.style.animationDuration = (1 + Math.random() * 2) + 's';
+      document.body.appendChild(star);
+    }
+
+    let currentPage = 1;
+    function nextPage() {
+      document.getElementById(`page${currentPage}`).classList.remove('active');
+      currentPage++;
+      document.getElementById(`page${currentPage}`).classList.add('active');
+    }
+
+    function restart() {
+      document.getElementById(`page${currentPage}`).classList.remove('active');
+      currentPage = 1;
+      document.getElementById(`page${currentPage}`).classList.add('active');
+    }
+  </script>
+
+</body>
+</html>
